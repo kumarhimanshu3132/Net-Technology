@@ -1,0 +1,14 @@
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\bin\Debug\net8.0\Practical-1_Student_Admission_Management.exe
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\bin\Debug\net8.0\Practical-1_Student_Admission_Management.deps.json
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\bin\Debug\net8.0\Practical-1_Student_Admission_Management.runtimeconfig.json
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\bin\Debug\net8.0\Practical-1_Student_Admission_Management.dll
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\bin\Debug\net8.0\Practical-1_Student_Admission_Management.pdb
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\obj\Debug\net8.0\Practical-1_Student_Admission_Management.GeneratedMSBuildEditorConfig.editorconfig
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\obj\Debug\net8.0\Practical-1_Student_Admission_Management.AssemblyInfoInputs.cache
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\obj\Debug\net8.0\Practical-1_Student_Admission_Management.AssemblyInfo.cs
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\obj\Debug\net8.0\Practical-1_Student_Admission_Management.csproj.CoreCompileInputs.cache
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\obj\Debug\net8.0\Practical-1_Student_Admission_Management.dll
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\obj\Debug\net8.0\refint\Practical-1_Student_Admission_Management.dll
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\obj\Debug\net8.0\Practical-1_Student_Admission_Management.pdb
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\obj\Debug\net8.0\Practical-1_Student_Admission_Management.genruntimeconfig.cache
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Practical-1_Student_Admission_Management\obj\Debug\net8.0\ref\Practical-1_Student_Admission_Management.dll
