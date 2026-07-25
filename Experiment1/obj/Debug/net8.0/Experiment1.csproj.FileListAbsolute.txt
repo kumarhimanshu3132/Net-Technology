@@ -1,0 +1,15 @@
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\bin\Debug\net8.0\Experiment1.exe
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\bin\Debug\net8.0\Experiment1.deps.json
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\bin\Debug\net8.0\Experiment1.runtimeconfig.json
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\bin\Debug\net8.0\Experiment1.dll
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\bin\Debug\net8.0\Experiment1.pdb
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\obj\Debug\net8.0\Experiment1.GeneratedMSBuildEditorConfig.editorconfig
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\obj\Debug\net8.0\Experiment1.AssemblyInfoInputs.cache
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\obj\Debug\net8.0\Experiment1.AssemblyInfo.cs
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\obj\Debug\net8.0\Experiment1.csproj.CoreCompileInputs.cache
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\obj\Debug\net8.0\Experiment1.sourcelink.json
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\obj\Debug\net8.0\Experiment1.dll
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\obj\Debug\net8.0\refint\Experiment1.dll
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\obj\Debug\net8.0\Experiment1.pdb
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\obj\Debug\net8.0\Experiment1.genruntimeconfig.cache
+D:\CE SEM 5\DNT 01CE0523 .Net Techonologies\Net Technology\Experiment1\obj\Debug\net8.0\ref\Experiment1.dll
