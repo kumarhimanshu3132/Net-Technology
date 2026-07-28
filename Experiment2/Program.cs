@@ -120,7 +120,7 @@ class FullTimeStaff : Employee
 }
 class Program
 {
-        static void Main()
+    static void Main()
     {
         List<Employee> employeeDB = new List<Employee>();
         while (true)
