@@ -61,7 +61,7 @@ namespace ExpenseTracker
         static void Main()
         {
             List<Expense> expenseList = new List<Expense>();
-            
+
             while (true)
             {
                 Console.WriteLine("\n=============================================================================================");
@@ -74,7 +74,7 @@ namespace ExpenseTracker
                 Console.WriteLine("5. Delete Expense");
                 Console.WriteLine("6. Exit");
                 Console.Write("Select an option (1-6): ");
-                
+
                 string choice = Console.ReadLine() ?? "";
 
                 if (choice == "1")
@@ -89,14 +89,14 @@ namespace ExpenseTracker
                             throw new ExpenseTrackerException("Description cannot be purely numeric or symbols.");
 
                         Console.Write("Enter Amount (Rs.): ");
-                        double amount = Convert.ToDouble(Console.ReadLine() ?? ""); 
+                        double amount = Convert.ToDouble(Console.ReadLine() ?? "");
                         if (amount <= 0)
                             throw new ExpenseTrackerException("Expense amount must be strictly greater than zero.");
 
                         Console.Write("Enter Date (DD-MM-YYYY): ");
                         string[] formats = { "dd-MM-yyyy", "d-M-yyyy", "d-MM-yyyy", "dd-M-yyyy" };
                         DateTime date = DateTime.ParseExact(Console.ReadLine() ?? "", formats, CultureInfo.InvariantCulture, DateTimeStyles.None);
-                        
+
                         if (date > DateTime.Today)
                             throw new ExpenseTrackerException("Expense date cannot be in the future.");
 
@@ -172,7 +172,7 @@ namespace ExpenseTracker
                         int year = Convert.ToInt32(Console.ReadLine() ?? "");
 
                         Console.WriteLine($"\n--- MONTHLY REPORT FOR {month:D2}/{year} ---");
-                        
+
                         var monthlyList = expenseList.Where(e => e.Date.Month == month && e.Date.Year == year)
                                                      .OrderBy(e => e.Date)
                                                      .ToList();
@@ -212,10 +212,10 @@ namespace ExpenseTracker
                     {
                         Console.Write("Enter Expense ID to Edit: ");
                         int editId = Convert.ToInt32(Console.ReadLine() ?? "");
-                        
+
                         // FIXED: Added '?' to Expense to handle possible null warning
                         Expense? expToEdit = expenseList.FirstOrDefault(e => e.Id == editId);
-                        
+
                         if (expToEdit == null)
                             throw new ExpenseTrackerException("No expense found with this ID.");
 
@@ -294,10 +294,10 @@ namespace ExpenseTracker
                     {
                         Console.Write("Enter Expense ID to Delete: ");
                         int delId = Convert.ToInt32(Console.ReadLine() ?? "");
-                        
+
                         // FIXED: Added '?' to Expense to handle possible null warning
                         Expense? expToDel = expenseList.FirstOrDefault(e => e.Id == delId);
-                        
+
                         if (expToDel == null)
                             throw new ExpenseTrackerException("No expense found with this ID.");
 

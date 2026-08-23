@@ -15,6 +15,7 @@ Welcome to my **.NET Technology** lab repository! This repository contains all t
 |  **1**  | Develop Student Admission Management Module[cite: 1] | Class, Object, Constructor, Access Modifiers[cite: 1] | [View](./Experiment1) |
 |  **2**  | Design Employee Payroll System[cite: 1]              | Inheritance, Interface & Polymorphism[cite: 1]        | [View](./Experiment2) |
 |  **3**  | Develop Expense Tracking Module                      | Exception Handling & Data Validation                  | [View](./Experiment3) |
+|  **4**  | Build Event Registration Portal                      | ASP.NET Web Forms, Validation Controls, C#            | [View](./Experiment4) |
 
 ## 💻 How to Run (For Console Applications)
 
