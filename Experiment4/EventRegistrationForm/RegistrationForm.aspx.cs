@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Reflection.Emit;
 using System.Text.RegularExpressions;
-using System.Web;
+using System.Globalization;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Xml.Linq;
 
 namespace EventRegistrationForm
 {
@@ -15,24 +9,33 @@ namespace EventRegistrationForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-                string cleanName = Regex.Replace(txtName.Text.Trim(), @"\s+", " ");
-
+                //Process Name (Space trimming aur Title Case)
+                string rawName = txtName.Text.Trim();
+                rawName = Regex.Replace(rawName, @"\s+", " ");
                 TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
-                cleanName = textInfo.ToTitleCase(cleanName.ToLower());
-                txtName.Text = cleanName;
+                string formattedName = textInfo.ToTitleCase(rawName.ToLower());
 
-                string enrollmentNo = TextBox3.Text;
-                string selectedEvent = DropDownList3.SelectedItem.Text;
+                //Generate Pop-up Message (Alert)
+                string alertMessage = $"Registration Successful!\\nWelcome {formattedName}.";
+                ClientScript.RegisterStartupScript(this.GetType(), "alert", $"alert('{alertMessage}');", true);
 
-                lblmessage.Text = $"Registration Successful! Welcome {cleanName} (Enrollment: {enrollmentNo}) to {selectedEvent}.";
-                lblmessage.ForeColor = System.Drawing.Color.Green;
+                //Auto-Clear the Form
+                txtName.Text = string.Empty;
+                TextBox2.Text = string.Empty;
+                TextBox3.Text = string.Empty;
+                TextBox4.Text = string.Empty;
+                TextBox5.Text = string.Empty;
+
+                RadioButtonList1.ClearSelection();
+                DropDownList1.SelectedIndex = 0;
+                DropDownList2.SelectedIndex = 0;
+                DropDownList3.SelectedIndex = 0;
             }
         }
     }
