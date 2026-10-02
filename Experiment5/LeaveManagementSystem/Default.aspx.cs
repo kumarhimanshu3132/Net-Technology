@@ -12,7 +12,7 @@ namespace LeaveManagementSystem
             if (e.Day.Date < DateTime.Now.Date)
             {
                 e.Day.IsSelectable = false;
-                e.Cell.ForeColor = System.Drawing.Color.Gray; // Purani dates grey color ki ho jayengi
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
             }
         }
         protected void Button1_Click(object sender, EventArgs e)

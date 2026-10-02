@@ -1,0 +1,65 @@
+﻿@model ProductCatalogApp.Models.Product
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add New Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-7">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-dark text-white py-3">
+                        <h5 class="mb-0">Add New Product to Catalog</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <form asp-controller="Product" asp-action="Create" method="post">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Product Name</label>
+                                <input asp-for="Name" class="form-control" placeholder="e.g. Ultra HD Monitor" required />
+                            </div>
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Brand</label>
+                                    <input asp-for="Brand" class="form-control" placeholder="e.g. Dell / Samsung" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Category</label>
+                                    <input asp-for="Category" class="form-control" placeholder="e.g. Electronics / Display" required />
+                                </div>
+                            </div>
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Price (₹)</label>
+                                    <input asp-for="Price" type="number" step="0.01" class="form-control" placeholder="e.g. 24999" required />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Initial Stock Quantity</label>
+                                    <input asp-for="Stock" type="number" class="form-control" placeholder="e.g. 15" required />
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Product Description</label>
+                                <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter key features and specifications" required></textarea>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <a asp-controller="Product" asp-action="Index" class="btn btn-outline-secondary">
+                                    Cancel
+                                </a>
+                                <button type="submit" class="btn btn-success px-4 fw-semibold">
+                                    Save Product
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
