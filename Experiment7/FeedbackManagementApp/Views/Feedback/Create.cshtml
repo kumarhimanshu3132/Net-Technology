@@ -1,0 +1,71 @@
+﻿@model FeedbackManagementApp.Models.Feedback
+@{
+    ViewData["Title"] = "Submit Feedback";
+}
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-dark text-white py-3">
+                <h5 class="mb-0"><i class="bi bi-chat-text-fill me-2"></i>Feedback Form</h5>
+            </div>
+            <div class="card-body p-4">
+                @using (Html.BeginForm("Create", "Feedback", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger mb-3" })
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.UserName, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Enter your name" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger small" })
+                    </div>
+                    <div class="mb-3">
+                        @Html.LabelFor(m => m.Email, new { @class = "form-label fw-semibold" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Enter your email", type = "email" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger small" })
+                    </div>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-5">
+                            @Html.LabelFor(m => m.Category, new { @class = "form-label fw-semibold" })
+                            @Html.DropDownListFor(m => m.Category, new List<SelectListItem>
+                            {
+                                new SelectListItem { Text = "-- Select Category --", Value = "" },
+                                new SelectListItem { Text = "Academic Course", Value = "Academic Course" },
+                                new SelectListItem { Text = "Lab Infrastructure", Value = "Lab Infrastructure" },
+                                new SelectListItem { Text = "Teaching & Pedagogy", Value = "Teaching & Pedagogy" },
+                                new SelectListItem { Text = "General Facility", Value = "General Facility" }
+                            }, new { @class = "form-select" })
+                            @Html.ValidationMessageFor(m => m.Category, "", new { @class = "text-danger small" })
+                        </div>
+                        <div class="col-md-7">
+                            @Html.LabelFor(m => m.Rating, new { @class = "form-label fw-semibold d-block" })
+                            <div class="border rounded p-2 d-flex justify-content-between align-items-center bg-light">
+                                <span class="text-muted small fw-semibold">1 (Low)</span>
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <div class="form-check form-check-inline m-0 text-center">
+                                        @Html.RadioButtonFor(m => m.Rating, i, new { id = $"rate_{i}", @class = "form-check-input" })
+                                        <label class="form-check-label d-block small fw-bold" for="rate_@i">@i</label>
+                                    </div>
+                                }
+                                <span class="text-muted small fw-semibold">5 (High)</span>
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Rating, "", new { @class = "text-danger small" })
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        @Html.LabelFor(m => m.Comments, new { @class = "form-label fw-semibold" })
+                        @Html.TextAreaFor(m => m.Comments, new { @class = "form-control", rows = 4, placeholder = "Enter your feedback in words (only characters allowed, min 10 characters)..." })
+                        @Html.ValidationMessageFor(m => m.Comments, "", new { @class = "text-danger small" })
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <a asp-action="Index" class="btn btn-outline-secondary">Back to Dashboard</a>
+                        <button type="submit" class="btn btn-success px-4 fw-semibold">Submit Feedback</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

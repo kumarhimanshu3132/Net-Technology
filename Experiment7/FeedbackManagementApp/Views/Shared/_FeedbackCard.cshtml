@@ -1,0 +1,30 @@
+﻿@model FeedbackManagementApp.Models.Feedback
+<div class="col-md-6 mb-3">
+    <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h6 class="card-title mb-0 fw-bold text-primary">@Model.UserName</h6>
+                <span class="badge bg-secondary">@Model.Category</span>
+            </div>
+            <div class="text-warning mb-2 small">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    if (i <= Model.Rating)
+                    {
+                        <i class="bi bi-star-fill"></i>
+                    }
+                    else
+                    {
+                        <i class="bi bi-star"></i>
+                    }
+                }
+                <span class="text-muted ms-1">(@Model.Rating/5)</span>
+            </div>
+            <p class="card-text text-secondary mb-2">"@Model.Comments"</p>
+        </div>
+        <div class="card-footer bg-white border-0 text-muted small d-flex justify-content-between">
+            <span><i class="bi bi-envelope me-1"></i>@Model.Email</span>
+            <span>@Model.SubmittedAt.ToString("dd MMM yyyy, hh:mm tt")</span>
+        </div>
+    </div>
+</div>

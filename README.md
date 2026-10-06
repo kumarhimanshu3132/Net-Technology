@@ -18,6 +18,7 @@ Welcome to my **.NET Technology** lab repository! This repository contains all t
 | **4** | Build Event Registration Portal | ASP.NET Web Forms, Validation Controls, C# | [View](./Experiment4/EventRegistrationForm) |
 | **5** | Academic Calendar & Leave Management System | Rich Controls, Session State, Cookies | [View](./Experiment5/LeaveManagementSystem) |
 | **6** | Product Catalog Application | ASP.NET Core MVC (Controllers, Models, Views, Routing) | [View](./Experiment6/ProductCatalogApp) |
+| **7** | Feedback Management Module | MVC Layout, Partial Views, HTML Helpers & Validation | [View](./Experiment7/FeedbackManagementApp) |
 
 ## 💻 How to Run (For Console Applications)
 
