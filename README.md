@@ -19,6 +19,7 @@ Welcome to my **.NET Technology** lab repository! This repository contains all t
 | **5** | Academic Calendar & Leave Management System | Rich Controls, Session State, Cookies | [View](./Experiment5/LeaveManagementSystem) |
 | **6** | Product Catalog Application | ASP.NET Core MVC (Controllers, Models, Views, Routing) | [View](./Experiment6/ProductCatalogApp) |
 | **7** | Feedback Management Module | MVC Layout, Partial Views, HTML Helpers & Validation | [View](./Experiment7/FeedbackManagementApp) |
+| **8** | Develop Inventory Management Module | ADO.NET Architecture, SqlConnection, SqlCommand, SqlDataReader & CRUD Operations | [View](./Experiment8/InventoryManagementApp) |
 
 ## 💻 How to Run (For Console Applications)
 
