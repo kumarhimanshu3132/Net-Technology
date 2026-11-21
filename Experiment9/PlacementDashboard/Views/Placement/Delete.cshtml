@@ -1,0 +1,73 @@
+@model PlacementDashboard.Models.Placement
+@{
+    ViewData["Title"] = "Delete Placement";
+}
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card border-0 shadow-sm mt-3">
+            <div class="card-header bg-danger text-white py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+                    <h5 class="card-title mb-0 fw-bold">Delete Placement Record</h5>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <div class="alert alert-warning border-0 d-flex align-items-center gap-2 mb-4" role="alert">
+                    <i class="bi bi-shield-exclamation fs-4"></i>
+                    <div>
+                        Are you sure you want to delete this placement record? This action cannot be undone.
+                    </div>
+                </div>
+                <div class="list-group list-group-flush mb-4 border rounded">
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Student Name</span>
+                        <span class="fw-bold text-dark">@Model.StudentName</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Enrollment No</span>
+                        <code class="fw-bold">@Model.EnrollmentNo</code>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Company Name</span>
+                        <span class="fw-semibold">@Model.CompanyName</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Role</span>
+                        <span>@Model.Role</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span class="text-muted">Package (LPA)</span>
+                        <span class="fw-bold text-success">₹@(Model.PackageLPA.HasValue?
+                                                    Model.PackageLPA.Value.ToString("N2") : "0.00") LPA</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="text-muted">Status</span>
+                            @if (Model.Status.Equals("Placed", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <span class="badge bg-success-subtle text-success border border-success">Placed</span>
+                            }
+                            else if (Model.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase))
+                            {
+                                <span class="badge bg-warning-subtle text-warning-emphasis border border-warning">Pending</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger-subtle text-danger border border-danger">Rejected</span>
+                            }
+                        </div>
+                    </div>
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="PlacementId" />
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a asp-action="Index" class="btn btn-outline-secondary d-flex align-items-center gap-1">
+                                <i class="bi bi-arrow-left"></i> Cancel
+                            </a>
+                            <button type="submit" class="btn btn-danger d-flex align-items-center gap-1 shadow-sm px-4">
+                                <i class="bi bi-trash-fill"></i> Confirm Delete
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

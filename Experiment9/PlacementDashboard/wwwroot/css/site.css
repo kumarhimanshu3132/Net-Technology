@@ -1,0 +1,125 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+body {
+    background-color: #f8fafc;
+    color: #1e293b;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.kpi-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 10px;
+    background: #ffffff;
+    border-top: 4px solid transparent !important;
+}
+
+.kpi-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+.kpi-primary {
+    border-top-color: #0d6efd !important;
+}
+
+.kpi-success {
+    border-top-color: #198754 !important;
+}
+
+.kpi-warning {
+    border-top-color: #ffc107 !important;
+}
+
+.kpi-info {
+    border-top-color: #0dcaf0 !important;
+}
+
+.kpi-icon-wrapper {
+    width: 54px;
+    height: 54px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.data-grid-table thead th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: #475569;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+}
+
+.data-grid-table tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.data-grid-table tbody td {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+}
+
+.report-card {
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+.report-table thead th {
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+}
+
+@media print {
+    body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .container-fluid {
+        padding: 0 !important;
+        margin: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .card {
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .report-card {
+        padding: 0 !important;
+    }
+
+    .table {
+        border-color: #000000 !important;
+    }
+
+    .table-dark {
+        background-color: #333333 !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .badge {
+        border: 1px solid #333333 !important;
+        color: #000000 !important;
+    }
+}

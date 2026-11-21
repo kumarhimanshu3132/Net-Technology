@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Placement Dashboard</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body class="bg-light d-flex flex-column min-vh-100">
+    <header class="no-print">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+            <div class="container-fluid px-lg-4">
+                <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" asp-controller="Placement" asp-action="Index">
+                    <span class="p-1 bg-primary rounded text-white d-inline-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                        <i class="bi bi-mortarboard-fill"></i>
+                    </span>
+                    <span>Placement<span class="text-primary">Dashboard</span></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active fw-semibold" : "")" 
+                               asp-controller="Placement" asp-action="Index">
+                                <i class="bi bi-speedometer2 me-1"></i> Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Create" ? "active fw-semibold" : "")" 
+                               asp-controller="Placement" asp-action="Create">
+                                <i class="bi bi-person-plus-fill me-1"></i> Add Record
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Report" ? "active fw-semibold" : "")" 
+                               asp-controller="Placement" asp-action="Report">
+                                <i class="bi bi-file-earmark-bar-graph me-1"></i> Placement Report
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="d-flex align-items-center text-light small">
+                        <span class="badge bg-secondary-subtle text-light border border-secondary me-2">ADO.NET (MSSQLLocalDB)</span>
+                        <span class="text-white-50">Batch 2026</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid px-lg-4 my-4 flex-grow-1">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="bg-white border-top py-3 text-muted no-print mt-auto">
+        <div class="container-fluid px-lg-4 d-flex flex-wrap justify-content-between align-items-center small">
+            <div>
+                <strong>Experiment 9:</strong> Placement Dashboard using Data Controls | ASP.NET Core (.NET 8.0)
+            </div>
+            <div>
+                System.Data.SqlClient &bull; LocalDB\MSSQLLocalDB &bull; B2026
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
