@@ -1,0 +1,372 @@
+@model IEnumerable<SmartCampusPortal.Models.CampusServiceTicket>
+@{
+    ViewData["Title"] = "Campus Service Dashboard";
+    var selectedCategory = ViewBag.SelectedCategory as string ?? "All";
+    var categories = new[] { "All", "Wi-Fi", "Hostel Maintenance", "Lab Issue", "ID Card", "Library" };
+}
+
+<div class="row align-items-center mb-4">
+    <div class="col-md-7">
+        <h2 class="fw-bold mb-1 text-dark">
+            <i class="bi bi-speedometer2 text-primary me-2"></i>Smart Campus Service Dashboard
+        </h2>
+        <p class="text-muted mb-0">
+            Real-time campus issue tracking powered by ASP.NET Core MVC consuming internal REST API backed by SQL Server LocalDB.
+        </p>
+    </div>
+    <div class="col-md-5 text-md-end mt-3 mt-md-0">
+        <a asp-action="Create" class="btn btn-primary shadow-sm px-3 py-2 fw-semibold">
+            <i class="bi bi-plus-lg me-1"></i> Raise New Request
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary shadow-sm px-3 py-2 ms-1">
+            <i class="bi bi-arrow-clockwise me-1"></i> Refresh
+        </a>
+    </div>
+</div>
+
+<!-- Key Metrics Row -->
+<div class="row g-3 mb-4">
+    <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-3 h-100 bg-white border-start border-primary border-4">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-uppercase text-muted small fw-bold">Total Tickets</div>
+                        <div class="h3 fw-bold text-dark mb-0">@ViewBag.TotalCount</div>
+                    </div>
+                    <div class="bg-primary-subtle text-primary rounded-circle p-3">
+                        <i class="bi bi-ticket-perforated fs-4"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-3 h-100 bg-white border-start border-warning border-4">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-uppercase text-muted small fw-bold">Open Tickets</div>
+                        <div class="h3 fw-bold text-warning mb-0">@ViewBag.OpenCount</div>
+                    </div>
+                    <div class="bg-warning-subtle text-warning rounded-circle p-3">
+                        <i class="bi bi-clock-history fs-4"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-3 h-100 bg-white border-start border-info border-4">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-uppercase text-muted small fw-bold">In Progress</div>
+                        <div class="h3 fw-bold text-info mb-0">@ViewBag.InProgressCount</div>
+                    </div>
+                    <div class="bg-info-subtle text-info rounded-circle p-3">
+                        <i class="bi bi-gear-wide-connected fs-4"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm rounded-3 h-100 bg-white border-start border-success border-4">
+            <div class="card-body p-3">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <div class="text-uppercase text-muted small fw-bold">Resolved</div>
+                        <div class="h3 fw-bold text-success mb-0">@ViewBag.ResolvedCount</div>
+                    </div>
+                    <div class="bg-success-subtle text-success rounded-circle p-3">
+                        <i class="bi bi-check-circle-fill fs-4"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Category Filter Row -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body p-3">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                <span class="fw-semibold text-secondary small text-uppercase me-2">
+                    <i class="bi bi-funnel-fill me-1"></i> Category Filter:
+                </span>
+                @foreach (var cat in categories)
+                {
+                    bool isActive = selectedCategory.Equals(cat, StringComparison.OrdinalIgnoreCase);
+                    <a asp-action="Index" asp-route-category="@(cat == "All" ? null : cat)"
+                       class="btn btn-sm rounded-pill @(isActive ? "btn-primary shadow-sm" : "btn-outline-secondary")">
+                        @cat
+                    </a>
+                }
+            </div>
+            <div class="text-muted small">
+                Showing <strong>@Model.Count()</strong> requests @(selectedCategory != "All" ? $"in '{selectedCategory}'" : "(All categories)")
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Table Card -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-white py-3 border-0 d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-bold text-dark">
+            <i class="bi bi-table me-2 text-primary"></i>Campus Service Requests
+        </h5>
+        <span class="badge bg-light text-dark border">
+            Data Source: REST API (GET /api/campus) &rarr; SQL Server (B2026.dbo.CampusServiceTbl)
+        </span>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr class="text-secondary small text-uppercase">
+                    <th style="width: 80px;">Ticket #</th>
+                    <th>Student Name</th>
+                    <th>Location</th>
+                    <th>Category</th>
+                    <th style="max-width: 320px;">Description</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th class="text-center" style="width: 170px;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="9" class="text-center py-5 text-muted">
+                            <i class="bi bi-inbox fs-1 d-block mb-2 text-secondary"></i>
+                            No campus service tickets found for the selected category.
+                            <div class="mt-2">
+                                <a asp-action="Create" class="btn btn-sm btn-primary">Raise a new request</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold text-muted">#@item.TicketId</td>
+                            <td>
+                                <div class="fw-semibold text-dark">@item.StudentName</div>
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-secondary border">
+                                    <i class="bi bi-geo-alt-fill me-1 text-danger"></i>@item.RoomOrBlock
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge bg-light text-dark border">
+                                    @switch (item.ServiceCategory)
+                                    {
+                                        case "Wi-Fi":
+                                            <i class="bi bi-wifi text-primary me-1"></i>
+                                            break;
+                                        case "Hostel Maintenance":
+                                            <i class="bi bi-house-door text-warning me-1"></i>
+                                            break;
+                                        case "Lab Issue":
+                                            <i class="bi bi-pc-display text-danger me-1"></i>
+                                            break;
+                                        case "ID Card":
+                                            <i class="bi bi-person-badge text-info me-1"></i>
+                                            break;
+                                        case "Library":
+                                            <i class="bi bi-book text-success me-1"></i>
+                                            break;
+                                        default:
+                                            <i class="bi bi-tag text-secondary me-1"></i>
+                                            break;
+                                    }
+                                    @item.ServiceCategory
+                                </span>
+                            </td>
+                            <td style="max-width: 320px;" class="text-break small text-muted">
+                                @item.Description
+                            </td>
+                            <td>
+                                @if (item.Priority.Equals("High", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <span class="badge bg-danger shadow-sm">
+                                        <i class="bi bi-fire me-1"></i>High
+                                    </span>
+                                }
+                                else if (item.Priority.Equals("Medium", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="bi bi-dash-circle me-1"></i>Medium
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">
+                                        <i class="bi bi-arrow-down-circle me-1"></i>Low
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Status.Equals("Resolved", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <span class="badge rounded-pill bg-success px-2 py-1">
+                                        <i class="bi bi-check-circle-fill me-1"></i>Resolved
+                                    </span>
+                                }
+                                else if (item.Status.Equals("In Progress", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <span class="badge rounded-pill bg-info text-dark px-2 py-1">
+                                        <i class="bi bi-gear-wide-connected me-1"></i>In Progress
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge rounded-pill bg-warning text-dark px-2 py-1">
+                                        <i class="bi bi-clock-history me-1"></i>Open
+                                    </span>
+                                }
+                            </td>
+                            <td class="small text-muted">
+                                @item.CreatedDate.ToString("MMM dd, yyyy HH:mm")
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center align-items-center gap-1">
+                                    @if (!item.Status.Equals("Resolved", StringComparison.OrdinalIgnoreCase))
+                                    {
+                                        <form asp-action="MarkResolved" asp-route-id="@item.TicketId" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-outline-success" title="Mark as Resolved">
+                                                <i class="bi bi-check2"></i> <span class="d-none d-md-inline">Mark Resolved</span>
+                                            </button>
+                                        </form>
+                                    }
+                                    <form asp-action="Delete" asp-route-id="@item.TicketId" method="post" class="d-inline"
+                                          onsubmit="return confirm('Are you sure you want to delete Ticket #@item.TicketId?');">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete Ticket">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Live API Status / JSON Preview Widget -->
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-header bg-dark text-white py-3 d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2">
+            <span class="spinner-grow spinner-grow-sm text-success" role="status"></span>
+            <span class="fw-bold">Live API Status / JSON Preview</span>
+            <span class="badge bg-secondary">fetch('/api/campus')</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+            <button id="btnFetchApi" class="btn btn-sm btn-primary">
+                <i class="bi bi-arrow-repeat me-1"></i> Fetch Live Data
+            </button>
+            <a href="/api/campus" target="_blank" class="btn btn-sm btn-outline-light">
+                <i class="bi bi-box-arrow-up-right me-1"></i> Open Endpoint
+            </a>
+        </div>
+    </div>
+    <div class="card-body p-3 bg-light">
+        <!-- Live telemetry ribbon -->
+        <div class="row g-2 mb-3">
+            <div class="col-6 col-md-3">
+                <div class="bg-white p-2 rounded border text-center">
+                    <span class="text-muted small d-block">Endpoint</span>
+                    <strong class="text-primary font-monospace">GET /api/campus</strong>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="bg-white p-2 rounded border text-center">
+                    <span class="text-muted small d-block">HTTP Status</span>
+                    <span id="apiStatusBadge" class="badge bg-secondary">Checking...</span>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="bg-white p-2 rounded border text-center">
+                    <span class="text-muted small d-block">Latency</span>
+                    <strong id="apiLatency" class="text-dark font-monospace">-- ms</strong>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="bg-white p-2 rounded border text-center">
+                    <span class="text-muted small d-block">Total Records</span>
+                    <strong id="apiRecordCount" class="text-success font-monospace">--</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- JSON Code Preview Container -->
+        <div class="position-relative">
+            <div class="d-flex justify-content-between align-items-center bg-secondary bg-opacity-10 px-3 py-1 rounded-top border border-bottom-0">
+                <span class="small text-muted font-monospace"><i class="bi bi-code-slash me-1"></i>Live Response JSON Preview (Proves MVC + Web API + SQL Server Database Integration)</span>
+                <span id="apiLastUpdated" class="small text-muted font-monospace">Updating...</span>
+            </div>
+            <pre id="apiJsonPreview" class="bg-dark text-success p-3 rounded-bottom border font-monospace mb-0" style="max-height: 280px; overflow-y: auto; font-size: 0.82rem;">Loading API data...</pre>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        async function fetchCampusApi() {
+            const previewEl = document.getElementById('apiJsonPreview');
+            const statusBadge = document.getElementById('apiStatusBadge');
+            const latencyEl = document.getElementById('apiLatency');
+            const countEl = document.getElementById('apiRecordCount');
+            const lastUpdatedEl = document.getElementById('apiLastUpdated');
+
+            const startTime = performance.now();
+            try {
+                const response = await fetch('/api/campus');
+                const endTime = performance.now();
+                const latency = Math.round(endTime - startTime);
+
+                statusBadge.textContent = `${response.status} ${response.statusText || 'OK'}`;
+                statusBadge.className = response.ok ? 'badge bg-success' : 'badge bg-danger';
+                latencyEl.textContent = `${latency} ms`;
+
+                if (response.ok) {
+                    const data = await response.json();
+                    countEl.textContent = `${data.length} records`;
+                    lastUpdatedEl.textContent = `Last sync: ${new Date().toLocaleTimeString()}`;
+                    previewEl.textContent = JSON.stringify(data, null, 2);
+                } else {
+                    countEl.textContent = '0';
+                    previewEl.textContent = `Error fetching API: ${response.status} ${response.statusText}`;
+                }
+            } catch (err) {
+                statusBadge.textContent = 'Connection Error';
+                statusBadge.className = 'badge bg-danger';
+                latencyEl.textContent = 'ERR';
+                countEl.textContent = '0';
+                previewEl.textContent = `Fetch Exception: ${err.message}`;
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchCampusApi();
+            const btn = document.getElementById('btnFetchApi');
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    fetchCampusApi();
+                });
+            }
+        });
+    </script>
+}
